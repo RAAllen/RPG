@@ -51,6 +51,6 @@ var Usable = function(name,door,info){
 
 Room.prototype.look = function() {
   if (this.active) {
-    $("#story").append("<li>> " + this.info[0] + "</li>");
+    $("#story").append("<li>" + this.info[0] + "</li>");
   }
 };
