@@ -1,6 +1,7 @@
-var room1 = new Room(
+var rooms = []
+var template = new Room(
   //active
-  true,
+  false,
   //info
   [
     //Main description
@@ -23,3 +24,30 @@ var room1 = new Room(
   //usables
   []
 );
+
+var room1 = new Room(
+  //active
+  true,
+  //info
+  [
+    //Main description
+    "It's a room.",
+    //North description
+    "North of room",
+    //East description
+    "East of room",
+    //South description
+    "South of Room",
+    //West description
+    "West of Room"
+  ],
+  //loot
+  [sword,coin],
+  //characters
+  [],
+  //doors
+  [],
+  //usables
+  []
+);
+rooms.push(room1)

@@ -48,3 +48,9 @@ var Usable = function(name,door,info){
   this.door = door;
   this.info = info;
 }
+
+Room.prototype.look = function() {
+  if (this.active) {
+    $("#story").append("<li>> " + this.info[0] + " There is a " + this.loot[0].name + ".</li>");
+  }
+};

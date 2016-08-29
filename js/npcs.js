@@ -6,7 +6,7 @@ var template = new NPC(
   //max health
   10,
   //damage
-  1,
+  1
   //dialogue
   //PUT DIALOGUE HERE, HOWEVER IT WORKS!
 );

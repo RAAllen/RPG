@@ -4,3 +4,10 @@ var template = new Loot(
   //info
   "It's a thing!"
 );
+
+var coin = new Loot(
+  //name
+  "COIN",
+  //info
+  "It's a coin!"
+);
