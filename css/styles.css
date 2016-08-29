@@ -1,0 +1,12 @@
+body{
+  font-family: monospace;
+}
+
+ul{
+
+  list-style: none;
+}
+
+input{
+  background-color: red;
+}

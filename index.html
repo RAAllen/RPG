@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery.js"></script>
+    <script src="js/jquery-3.1.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <title>RPG</title>
@@ -12,6 +12,12 @@
   <body>
     <div class="container">
       <h1>RPG GAME</h1>
+      <div>
+        <form id="userInfo">
+          <label for="userName">Enter your name</label>
+          <input type="text" class="form-control" id="userName">
+        </form>
+      </div>
 
       <div class="row">
         <div class="col-sm-4">
@@ -30,7 +36,7 @@
 
         <div class="col-sm-8">
           <ul id="story"><li>Test</li></ul>
-          <form id="userInfo">
+          <form id="userEntries">
             <input type="text" class="form-control" id="userInput">
           </form>
           <div id="command-list">
