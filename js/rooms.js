@@ -31,7 +31,7 @@ var room1 = new Room(
   //info
   [
     //Main description
-    "It's a room.",
+    "It's a room. There is a SWORD and a COIN in it. A DOOR leads to the NORTH.",
     //North description
     "North of room",
     //East description
@@ -48,6 +48,6 @@ var room1 = new Room(
   //doors
   [],
   //usables
-  []
+  [door1]
 );
 rooms.push(room1)

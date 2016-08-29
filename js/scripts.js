@@ -19,13 +19,15 @@ $(document).ready(function(){
   });
   $("#userEntries").submit(function(event){
     event.preventDefault();
-    var userEntry = $("#userInput").val();
+    var userEntry = $("#userInput").val().toUpperCase();
     var userEntryArray = userEntry.split(" ");
+    var isValid = false;
     // Is it a valid command
     for(i=0;i<commands.length;i++){
       if(userEntryArray[0] === commands[i]){
         $("#story").append("<li>> " + userEntry + "</li>");
         $("#userInput").val("");
+        isValid = true
         //If it is LOOK
         if(userEntryArray[0] === commands[0]){
           //If it is ONLY LOOK
@@ -41,12 +43,19 @@ $(document).ready(function(){
                     $("#story").append("<li>> " + rooms[r].loot[j].info + "</li>");
                   }
                 }
+                for(j=0;j<rooms[r].usable.length;j++){
+                  if(userEntryArray[i].includes(rooms[r].usable[j].name)){
+                    $("#story").append("<li>> " + rooms[r].usable[j].info + "</li>");
+                  }
+                }
               }
             }
           }
         }
       }
-
+      if(!isValid){
+        $("#story").append("<li>You can't '" + userEntry + "'.</li>");
+      }
       // $("#story").append("<li>I don't know the command '" + userEntry + "'</li>");
       // $("#userInput").val("");
 
