@@ -45,6 +45,11 @@ var NPC = function(name,info,maxHealth,damage){
   this.dialogue; //ADD DIALOGUE STUFF HERE!!!!!!
 }
 
+var Dialogue = function(){
+  this.response = response;
+  this.playerResponse = playerResponse;
+}
+
 var Usable = function(name,door,info){
   this.name = name;
   this.active = false;

@@ -8,14 +8,14 @@ $(document).ready(function(){
 
   $("#userInfo").submit(function(event){
     event.preventDefault();
-
     var name = $("#userName").val();
     player.name = name;
-
     console.log(player);
-
-
+    $("#playerName").text(player.name);
+    $("#playerHealth").text(player.currentHealth + "/" + player.maxHealth)
+    $("#userInfo").hide();
   });
+
   $("#userEntries").submit(function(event){
     event.preventDefault();
     var userEntry = $("#userInput").val().toUpperCase();
@@ -85,11 +85,20 @@ $(document).ready(function(){
             }
           }
         } //end ATTACK
+        if(userEntryArray[0] === commands[4]) {
+          if(userEntryArray.length === 1){
+            $("#story").append("<li>TALK to whom?</li>");
+          }
+          else if (userEntryArray.length > 1) {
+            fredDialogue();
+          }
+        }
       }
     }
     if(!isValid){
       $("#story").append("<li>You can't '" + userEntry + "'.</li>");
     }
+    $("#playerHealth").text(player.currentHealth + "/" + player.maxHealth)
   });
 
   $("#restart").click(function() {

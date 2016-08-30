@@ -12,6 +12,7 @@
     <script src="js/npcs.js"></script>
     <script src="js/usables.js"></script>
     <script src="js/rooms.js"></script>
+    <script src="js/dialogues.js"></script>
     <script src="js/scripts.js"></script>
     <title>RPG</title>
   </head>
@@ -27,15 +28,13 @@
 
       <div class="row" id="play-game">
         <div class="col-sm-4">
-          <div id="player-name">
-          </div>
-          <div id="player-health">
-          </div>
+          <h2 id ="playerName">Player</h2>
+          <h3 id="playerHealth"></h3>
           <!-- <div id="character-damage">
           </div>
           <div id="character-defense">
           </div> -->
-          <h3>Inventory:</h3>
+          <h4>Inventory:</h4>
           <ul id="player-inventory">
           </ul>
         </div>
@@ -59,6 +58,7 @@
       <div id="win-screen">
       </div>
 
+      <h4>Commands: LOOK | USE | ATTACK | GET | TALK | EQUIP | DROP</h4>
     </div>
   </body>
 </html>
