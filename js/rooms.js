@@ -42,7 +42,7 @@ var room1 = new Room(
     "West of Room"
   ],
   //loot
-  [sword,coin],
+  [sword,coin,stick],
   //characters
   [Fred],
   //doors

@@ -25,3 +25,11 @@ var sword = new Weapon(
   //damage
   2
 );
+var stick = new Weapon(
+  //name
+  "STICK",
+  //info,
+  "It's a stick.",
+  //damage
+  1
+);
