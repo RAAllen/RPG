@@ -10,3 +10,7 @@ ul{
 input{
   background-color: red;
 }
+
+#lose-screen {
+  display: none;
+}
