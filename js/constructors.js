@@ -7,6 +7,7 @@ var Player = function(playerName,maxHealth,damage,info){
   this.inventory = [];
   this.info = info;
   this.weapon = 0;
+  this.isAlive = true;
 }
 
 var Room = function(active,info,loot,characters,doors,usables){
@@ -40,6 +41,7 @@ var NPC = function(name,info,maxHealth,damage){
   this.maxHealth = maxHealth;
   this.currentHealth = this.maxHealth;
   this.damage = damage;
+  this.isAlive = true;
   this.dialogue; //ADD DIALOGUE STUFF HERE!!!!!!
 }
 
@@ -54,5 +56,5 @@ Room.prototype.look = function() {
   if (this.active) {
     $("#story").append("<li>" + this.info[0] + "</li>");
   }
-  
+
 };

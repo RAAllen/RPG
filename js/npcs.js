@@ -19,7 +19,7 @@ var Fred = new NPC(
   //max health
   10,
   //damage
-  1
+  100
   //dialogue
   //PUT DIALOGUE HERE, HOWEVER IT WORKS!
 );
