@@ -56,6 +56,7 @@ Room.prototype.look = function() {
   }
 };
 
+
 var look = function(userEntryArray, arrayLength, room) {
   for(var look=1;look < arrayLength;look++){
     for(var j=0;j<room.loot.length;j++){
