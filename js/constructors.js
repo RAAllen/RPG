@@ -6,6 +6,7 @@ var Player = function(playerName,maxHealth,damage,info){
   this.damage = damage;
   this.inventory = [];
   this.info = info;
+  this.weapon = 0;
 }
 
 var Room = function(active,info,loot,characters,doors,usables){
@@ -53,4 +54,5 @@ Room.prototype.look = function() {
   if (this.active) {
     $("#story").append("<li>" + this.info[0] + "</li>");
   }
+  
 };

@@ -7,6 +7,16 @@ var template = new Weapon(
   1
 );
 
+var fists = new Weapon(
+  //name
+  "FISTS",
+  //info,
+  "It's your hands.",
+  //damage
+  0
+);
+
+
 var sword = new Weapon(
   //name
   "SWORD",
