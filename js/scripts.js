@@ -91,7 +91,31 @@ $(document).ready(function(){
               }
             }
           }
-        } //end GET
+        } //end EQUIP
+          else if(userEntryArray[0] === commands[2]){
+          //If it is ONLY ATTACK
+          if(userEntryArray.length === 1){
+            $("#story").append("<li>Please select something to attack.</li>");
+          }
+          //If it is ATTACK with more words
+          else if(userEntryArray.length > 1){
+            for(var r=0;r<rooms.length;r++){
+              for(var attack=1;attack<userEntryArray.length;attack++){
+                for(var k=0; k<rooms[r].characters.length; k++){
+                  if(userEntryArray[attack].includes(rooms[r].characters[k].name)){
+                    $("#story").append("<li>You attack " + rooms[r].characters[k].name + " and they take " + player.damage + " damage.</li>");
+                    rooms[r].characters[k].currentHealth -= player.damage;
+                    console.log(Fred);
+                    if (rooms[r].characters[k].currentHealth <= 0) {
+                      rooms[r].characters[k].isAlive = false;
+                      $("#story").append("<li>" + rooms[r].characters[k].name + " has died!</li>")
+                    };
+                  }
+                }
+              }
+            }
+          }
+        } //end ATTACK
       }
     }
     if(!isValid){

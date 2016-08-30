@@ -44,7 +44,7 @@ var room1 = new Room(
   //loot
   [sword,coin],
   //characters
-  [],
+  [Fred],
   //doors
   [],
   //usables
