@@ -46,11 +46,14 @@ var room1 = new Room(
   //characters
   [Fred],
   //doors
-  [],
+  [northDoor1],
   //usables
-  [door1]
+  [],
+  // exits
+  'NORTH'
 );
 rooms.push(room1)
+southDoor2.destination = room1
 
 var room2 = new Room(
   //active
@@ -58,7 +61,7 @@ var room2 = new Room(
   //info
   [
     //Main description
-    "It's a room. There is a GATE leading NORTH and a DOOR leading SOUTH.",
+    "You're in ROOM 2 now. There are DRUGS in the middle of the floor, and a DOOR leading SOUTH.",
     //North description
     "North of room",
     //East description
@@ -69,12 +72,15 @@ var room2 = new Room(
     "West of Room"
   ],
   //loot
-  [],
+  [drugs],
   //characters
   [],
   //doors
-  [],
+  [southDoor2],
   //usables
-  [door1]
+  [],
+  // exits
+  'SOUTH'
 );
 rooms.push(room2)
+northDoor1.destination = room2
