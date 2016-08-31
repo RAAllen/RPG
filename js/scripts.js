@@ -47,6 +47,9 @@ $(document).ready(function(){
         else if(userEntryArray[0] === commands[3]){
           player.getLoot(userEntryArray,rooms);
         } //end GET
+        else if(userEntryArray[0] === commands[6]){
+          player.dropLoot(userEntryArray,rooms);
+        } //end drop
         else if(userEntryArray[0] === commands[5]){
           // equip(userEntryArray, numberOfWords, rooms, player);
           player.equipWeapon(userEntryArray, numberOfWords, rooms, player);
