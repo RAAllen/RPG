@@ -3,7 +3,7 @@ var commands = ["LOOK", "USE", "ATTACK", "GET", "TALK", "EQUIP", "DROP"];
 $(document).ready(function(){
 
   var player = new Player("",10,1,"It's you.");
-  var linenClothes = new Loot("LINEN CLOTHES","It's your clothes");
+  var linenClothes = new Loot("CLOTHES","It's your clothes");
   player.inventory.push(linenClothes);
   player.printInventory();
 

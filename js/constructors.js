@@ -108,7 +108,7 @@ Player.prototype.getLoot = function(userEntryArray, rooms){
     else if(userEntryArray.length > 1){
       for(var get=1;get<userEntryArray.length;get++){
         for(var j=0;j<rooms[r].loot.length;j++){
-          if(userEntryArray[get].includes(rooms[r].loot[j].name)){
+          if(userEntryArray[get].includes(rooms[r].loot[j].name) && rooms[r].active){
             $("#story").append("<li>You pick up the " + rooms[r].loot[j].name + " and put it in your inventory.</li>");
             this.inventory.push(rooms[r].loot[j]);
             rooms[r].loot.splice($.inArray(rooms[r].loot[j], rooms[r].loot), 1);
