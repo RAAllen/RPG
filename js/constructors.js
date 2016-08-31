@@ -10,13 +10,14 @@ var Player = function(playerName,maxHealth,damage,info){
   this.isAlive = true;
 }
 
-var Room = function(active,info,loot,characters,doors,usables){
+var Room = function(active,info,loot,characters,doors,usables, exits){
   this.active = active;
   this.info = info;
   this.loot = loot;
   this.characters = characters;
   this.doors = doors;
   this.usable = usables;
+  this.exits = exits
 }
 
 var Loot = function(name,info,equipable){
@@ -55,6 +56,13 @@ var Usable = function(name,door,info){
   this.active = false;
   this.door = door;
   this.info = info;
+}
+
+var Door = function (name, direction, destination, locked) {
+  this.name = name;
+  this.direction = direction;
+  this.destination = destination;
+  this.locked = locked;
 }
 
 Room.prototype.look = function() {
@@ -109,7 +117,7 @@ Player.prototype.getLoot = function(userEntryArray, rooms){
     else if(userEntryArray.length > 1){
       for(var get=1;get<userEntryArray.length;get++){
         for(var j=0;j<rooms[r].loot.length;j++){
-          if(userEntryArray[get].includes(rooms[r].loot[j].name)){
+          if(userEntryArray[get].includes(rooms[r].loot[j].name) && rooms[r].active){
             $("#story").append("<li>You pick up the " + rooms[r].loot[j].name + " and put it in your inventory.</li>"); //sometimes throws error not finding name
             this.inventory.push(rooms[r].loot[j]);
             rooms[r].loot.splice($.inArray(rooms[r].loot[j], rooms[r].loot), 1);
@@ -135,6 +143,29 @@ var look = function(userEntryArray, arrayLength, room) {
     for(var j=0;j<room.usable.length;j++){
       if(userEntryArray[look].includes(room.usable[j].name)){
         $("#story").append("<li>" + room.usable[j].info + "</li>");
+      }
+    }
+  }
+};
+
+var open = function(words, numberOfWords, rooms) {
+  if (numberOfWords <= 1) {
+    $("#story").append("<li>To OPEN a DOOR, type 'OPEN' and then the direction the DOOR is facing, such as 'NORTH' or 'SOUTH'.");
+  }
+  else if (numberOfWords > 1) {
+    for (var r=0; r < rooms.length; r++) {
+      console.log(rooms[r])
+      if (rooms[r].active === true) {
+        for (var w=0; w < numberOfWords; w++) {
+          for (var d=0; d < rooms[r].doors.length; d++) {
+            if (words[w].includes(rooms[r].exits)) {
+              $("#story").append("<li>You OPEN the " + rooms[r].exits + " DOOR and enter the next room.</li>")
+              rooms[r].doors[d].destination.active = true;
+              rooms[r].active = false;
+              $("#story").append("<li>" + rooms[r].doors[d].destination.info[0] + "</li>")
+            }
+          }
+        }
       }
     }
   }

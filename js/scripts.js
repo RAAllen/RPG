@@ -1,5 +1,5 @@
 
-var commands = ["LOOK", "USE", "ATTACK", "GET", "TALK", "EQUIP", "DROP"];
+var commands = ["LOOK", "USE", "ATTACK", "GET", "TALK", "EQUIP", "DROP", 'OPEN'];
 $(document).ready(function(){
 
   var player = new Player("",10,1,"It's you.");
@@ -89,14 +89,17 @@ $(document).ready(function(){
             }
           }
         } //end ATTACK
-        if(userEntryArray[0] === commands[4]) {
-          if(userEntryArray.length === 1){
-            $("#story").append("<li>TALK to whom?</li>");
-          }
-          else if (userEntryArray.length > 1) {
-            fredDialogue();
-          }
+        if (userEntryArray[0] === 'OPEN') {
+          open(userEntryArray, numberOfWords, rooms);
         }
+        // if(userEntryArray[0] === commands[4]) {
+        //   if(userEntryArray.length === 1){
+        //     $("#story").append("<li>TALK to whom?</li>");
+        //   }
+        //   else if (userEntryArray.length > 1) {
+        //     fredDialogue();
+        //   }
+        // }
       }
     }
     if(!isValid){
