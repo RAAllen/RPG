@@ -24,6 +24,7 @@ $(document).ready(function(){
     var userEntryArray = userEntry.split(" ");
     var numberOfWords = userEntryArray.length
     var isValid = false;
+    $("#story").append("<li> </li>")
     // Is it a valid command
     for(var i=0;i<commands.length;i++){
       if(userEntryArray[0] === commands[i]){
