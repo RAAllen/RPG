@@ -11,6 +11,6 @@ input{
   background-color: red;
 }
 
-#lose-screen {
+#lose-screen, #play-game  {
   display: none;
 }

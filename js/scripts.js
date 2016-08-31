@@ -15,6 +15,7 @@ $(document).ready(function(){
     $("#playerName").text(player.name);
     $("#playerHealth").text(player.currentHealth + "/" + player.maxHealth)
     $("#userInfo").hide();
+    $("#play-game").show();
   });
 
   $("#userEntries").submit(function(event){
