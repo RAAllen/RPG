@@ -58,11 +58,12 @@ var Usable = function(name,door,info){
   this.info = info;
 }
 
-var Door = function (name, direction, destination, locked) {
+var Door = function (name, direction, destination, locked, info) {
   this.name = name;
   this.direction = direction;
   this.destination = destination;
   this.locked = locked;
+  this.info = info
 }
 
 Room.prototype.look = function() {
@@ -133,16 +134,20 @@ Player.prototype.getLoot = function(userEntryArray, rooms){
 }
 
 
-var look = function(userEntryArray, arrayLength, room) {
-  for(var look=1;look < arrayLength;look++){
-    for(var j=0;j<room.loot.length;j++){
-      if(userEntryArray[look].includes(room.loot[j].name)){
-        $("#story").append("<li>" + room.loot[j].info + "</li>");
-      }
-    }
-    for(var j=0;j<room.usable.length;j++){
-      if(userEntryArray[look].includes(room.usable[j].name)){
-        $("#story").append("<li>" + room.usable[j].info + "</li>");
+var look = function(userEntryArray, arrayLength, rooms) {
+  for (var r = 0; r < rooms.length; r++) {
+    if (rooms[r].active) {
+      for(var look=1;look < arrayLength;look++){
+        for(var j=0;j<rooms[r].loot.length;j++){
+          if(userEntryArray[look].includes(rooms[r].loot[j].name)){
+            $("#story").append("<li>" + rooms[r].loot[j].info + "</li>");
+          }
+        }
+        for(var j=0;j<rooms[r].usable.length;j++){
+          if(userEntryArray[look].includes(rooms[r].door[j].name)){
+            $("#story").append("<li>" + rooms[r].door[j].info + "</li>");
+          }
+        }
       }
     }
   }

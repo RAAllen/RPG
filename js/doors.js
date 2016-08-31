@@ -9,12 +9,14 @@ var northDoor1 = new Door(
   'DOOR',
   'NORTH',
   '',
-  false
+  false,
+  'An ordinary wooden door.'
 );
 
 var southDoor2 = new Door(
   'DOOR',
   'SOUTH',
   '',
-  false
+  false,
+  'An ordinary wooden door.'
 );
