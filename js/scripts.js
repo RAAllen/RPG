@@ -3,7 +3,7 @@ var commands = ["LOOK", "USE", "ATTACK", "GET", "TALK", "EQUIP", "DROP"];
 $(document).ready(function(){
 
   var player = new Player("",10,1,"It's you.");
-  var linenClothes = new Loot("Linen Clothes","It's your clothes");
+  var linenClothes = new Loot("LINEN CLOTHES","It's your clothes");
   player.inventory.push(linenClothes);
   player.printInventory();
 
@@ -43,7 +43,7 @@ $(document).ready(function(){
           }
         }//end LOOK
         else if(userEntryArray[0] === commands[3]){
-          get(userEntryArray, numberOfWords, rooms, player);
+          player.getLoot(userEntryArray,rooms);
         } //end GET
         else if(userEntryArray[0] === commands[5]){
           // equip(userEntryArray, numberOfWords, rooms, player);

@@ -71,7 +71,7 @@ Player.prototype.printInventory = function() {
   }
 };
 
-Player.prototype.equipWeapon = function(userEntryArray, arrayLength){
+Player.prototype.equipWeapon = function(userEntryArray){
     if(userEntryArray.length === 1){
       $("#story").append("<li>You can't EQUIP nothing.</li>");
     }
@@ -94,10 +94,34 @@ Player.prototype.equipWeapon = function(userEntryArray, arrayLength){
       else{
         this.inventory.push(this.weapon);
         this.weapon = false;
-        this.equipWeapon(userEntryArray, arrayLength);
+        $("#player-weapon").text(this.weapon.name);
+        this.equipWeapon(userEntryArray);
       }
     }
   this.printInventory();
+}
+
+Player.prototype.getLoot = function(userEntryArray, rooms){
+  for(var r=0;r<rooms.length;r++){
+    if(userEntryArray.length === 1){
+      $("#story").append("<li>You reach out infront of you and grab. You open it to see you have grabbed nothing.</li>");
+    }
+    else if(userEntryArray.length > 1){
+      for(var get=1;get<userEntryArray.length;get++){
+        for(var j=0;j<rooms[r].loot.length;j++){
+          if(userEntryArray[get].includes(rooms[r].loot[j].name)){
+            $("#story").append("<li>You pick up the " + rooms[r].loot[j].name + " and put it in your inventory.</li>"); //sometimes throws error not finding name
+            this.inventory.push(rooms[r].loot[j]);
+            rooms[r].loot.splice($.inArray(rooms[r].loot[j], rooms[r].loot), 1);
+            console.log(this);
+          }
+        }
+      }
+    }
+  }
+
+  this.printInventory();
+
 }
 
 
@@ -116,28 +140,28 @@ var look = function(userEntryArray, arrayLength, room) {
   }
 };
 
-var get = function(userEntryArray, arrayLength, rooms, player) {
-  for(var r=0;r<rooms.length;r++){
-    if(arrayLength === 1){
-      $("#story").append("<li>You reach out infront of you and grab. You open it to see you have grabbed nothing.</li>");
-    }
-    //If it is GET with more words
-    else if(arrayLength > 1){
-      for(var get=1;get<arrayLength;get++){
-        for(var j=0;j<rooms[r].loot.length;j++){
-          if(userEntryArray[get].includes(rooms[r].loot[j].name)){
-            $("#story").append("<li>You pick up the " + rooms[r].loot[j].name + " and put it in your inventory.</li>"); //sometimes throws error not finding name
-            player.inventory.push(rooms[r].loot[j])
-            rooms[r].loot.splice(rooms[r].loot[j], 1);
-            console.log(player)
-          }
-        }
-      }
-    }
-  }
-
-  player.printInventory();
-}
+// var get = function(userEntryArray, arrayLength, rooms, player) {
+//   for(var r=0;r<rooms.length;r++){
+//     if(arrayLength === 1){
+//       $("#story").append("<li>You reach out infront of you and grab. You open it to see you have grabbed nothing.</li>");
+//     }
+//     //If it is GET with more words
+//     else if(arrayLength > 1){
+//       for(var get=1;get<arrayLength;get++){
+//         for(var j=0;j<rooms[r].loot.length;j++){
+//           if(userEntryArray[get].includes(rooms[r].loot[j].name)){
+//             $("#story").append("<li>You pick up the " + rooms[r].loot[j].name + " and put it in your inventory.</li>"); //sometimes throws error not finding name
+//             player.inventory.push(rooms[r].loot[j])
+//             rooms[r].loot.splice(rooms[r].loot[j], 1);
+//             console.log(player)
+//           }
+//         }
+//       }
+//     }
+//   }
+//
+//   player.printInventory();
+// }
 
 // var equip = function(userEntryArray, arrayLength, rooms, player){
 //   for(var r=0;r<rooms.length;r++){
