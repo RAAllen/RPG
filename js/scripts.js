@@ -33,14 +33,7 @@ $(document).ready(function(){
         isValid = true
         //If it is LOOK
         if(userEntryArray[0] === commands[0]){
-          //If it is ONLY LOOK
-            if(userEntryArray.length === 1){
-              rooms[r].look();
-            }
-            //If it is LOOK with more words
-            else if(userEntryArray.length > 1){
-              look(userEntryArray, numberOfWords, rooms);
-            }
+          look(userEntryArray, numberOfWords, rooms);
         }//end LOOK
         else if(userEntryArray[0] === commands[3]){
           player.getLoot(userEntryArray,rooms);

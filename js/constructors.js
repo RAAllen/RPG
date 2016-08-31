@@ -156,16 +156,21 @@ Player.prototype.dropLoot = function(userEntryArray, rooms){
 
 var look = function(userEntryArray, arrayLength, rooms) {
   for (var r = 0; r < rooms.length; r++) {
-    if (rooms[r].active) {
-      for(var look=1;look < arrayLength;look++){
-        for(var j=0;j<rooms[r].loot.length;j++){
-          if(userEntryArray[look].includes(rooms[r].loot[j].name)){
-            $("#story").append("<li>" + rooms[r].loot[j].info + "</li>");
+    if (arrayLength === 1 && rooms[r].active) {
+      $("#story").append("<li>" + rooms[r].info[0] + "</li>");
+    }
+    else if (arrayLength > 1) {
+      if (rooms[r].active) {
+        for(var look=1;look < arrayLength;look++){
+          for(var j=0;j<rooms[r].loot.length;j++){
+            if(userEntryArray[look].includes(rooms[r].loot[j].name)){
+              $("#story").append("<li>" + rooms[r].loot[j].info + "</li>");
+            }
           }
-        }
-        for(var j=0;j<rooms[r].usable.length;j++){
-          if(userEntryArray[look].includes(rooms[r].door[j].name)){
-            $("#story").append("<li>" + rooms[r].door[j].info + "</li>");
+          for(var j=0;j<rooms[r].usable.length;j++){
+            if(userEntryArray[look].includes(rooms[r].door[j].name)){
+              $("#story").append("<li>" + rooms[r].door[j].info + "</li>");
+            }
           }
         }
       }
