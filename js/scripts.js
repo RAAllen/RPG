@@ -5,6 +5,7 @@ $(document).ready(function(){
   var player = new Player("",10,1,"It's you.");
   var linenClothes = new Loot("Linen Clothes","It's your clothes");
   player.inventory.push(linenClothes);
+  player.printInventory();
 
   $("#userInfo").submit(function(event){
     event.preventDefault();
@@ -45,7 +46,8 @@ $(document).ready(function(){
           get(userEntryArray, numberOfWords, rooms, player);
         } //end GET
         else if(userEntryArray[0] === commands[5]){
-          equip(userEntryArray, numberOfWords, rooms, player);
+          // equip(userEntryArray, numberOfWords, rooms, player);
+          player.equipWeapon(userEntryArray, numberOfWords, rooms, player);
         } //end EQUIP
           //If it is ONLY EQUIP
         else if(userEntryArray[0] === commands[2]){

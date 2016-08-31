@@ -6,7 +6,7 @@ var Player = function(playerName,maxHealth,damage,info){
   this.damage = damage;
   this.inventory = [];
   this.info = info;
-  this.weapon = 0;
+  this.weapon = false;
   this.isAlive = true;
 }
 
@@ -64,6 +64,42 @@ Room.prototype.look = function() {
 
 };
 
+Player.prototype.printInventory = function() {
+  $("#player-inventory").empty();
+  for(var i = 0; i< this.inventory.length; i++){
+    $("#player-inventory").append("<li>" + this.inventory[i].name + "</li>")
+  }
+};
+
+Player.prototype.equipWeapon = function(userEntryArray, arrayLength){
+    if(userEntryArray.length === 1){
+      $("#story").append("<li>You can't EQUIP nothing.</li>");
+    }
+    //If it is EQUIP with more words
+    else if(userEntryArray.length > 1){
+      if(!this.weapon){
+        for(var equip=1;equip<userEntryArray.length;equip++){
+          for(var j=0;j<this.inventory.length;j++){
+            if(userEntryArray[equip] === this.inventory[j].name && this.inventory[j].constructor.name === "Weapon"){
+              $("#story").append("<li>You EQUIP the " + this.inventory[j].name + ".</li>");
+              this.weapon = this.inventory[j];
+              this.damage = this.weapon.damage;
+              console.log(this);
+              this.inventory.splice($.inArray(this.inventory[j], this.inventory), 1);
+              $("#player-weapon").text(this.weapon.name);
+            }
+          }
+        }
+      }
+      else{
+        this.inventory.push(this.weapon);
+        this.weapon = false;
+        this.equipWeapon(userEntryArray, arrayLength);
+      }
+    }
+  this.printInventory();
+}
+
 
 var look = function(userEntryArray, arrayLength, room) {
   for(var look=1;look < arrayLength;look++){
@@ -83,7 +119,7 @@ var look = function(userEntryArray, arrayLength, room) {
 var get = function(userEntryArray, arrayLength, rooms, player) {
   for(var r=0;r<rooms.length;r++){
     if(arrayLength === 1){
-      $("#story").append("<li>You can't grab the air.</li>");
+      $("#story").append("<li>You reach out infront of you and grab. You open it to see you have grabbed nothing.</li>");
     }
     //If it is GET with more words
     else if(arrayLength > 1){
@@ -92,31 +128,35 @@ var get = function(userEntryArray, arrayLength, rooms, player) {
           if(userEntryArray[get].includes(rooms[r].loot[j].name)){
             $("#story").append("<li>You pick up the " + rooms[r].loot[j].name + " and put it in your inventory.</li>"); //sometimes throws error not finding name
             player.inventory.push(rooms[r].loot[j])
+            rooms[r].loot.splice(rooms[r].loot[j], 1);
             console.log(player)
           }
         }
       }
     }
   }
+
+  player.printInventory();
 }
 
-var equip = function(userEntryArray, arrayLength, rooms, player){
-  for(var r=0;r<rooms.length;r++){
-    if(userEntryArray.length === 1){
-      $("#story").append("<li>You can't EQUIP nothing.</li>");
-    }
-    //If it is EQUIP with more words
-    else if(userEntryArray.length > 1){
-      for(var equip=1;equip<userEntryArray.length;equip++){
-        for(var j=0;j<rooms[r].loot.length;j++){
-          if(userEntryArray[equip] === player.inventory[j].name && player.inventory[j].constructor.name === "Weapon"){
-            $("#story").append("<li>You EQUIP the " + player.inventory[j].name + ".</li>");
-            player.weapon = player.inventory[j];
-            player.damage += player.weapon.damage;
-            console.log(player);
-          }
-        }
-      }
-    }
-  }
-}
+// var equip = function(userEntryArray, arrayLength, rooms, player){
+//   for(var r=0;r<rooms.length;r++){
+//     if(userEntryArray.length === 1){
+//       $("#story").append("<li>You can't EQUIP nothing.</li>");
+//     }
+//     //If it is EQUIP with more words
+//     else if(userEntryArray.length > 1){
+//       for(var equip=1;equip<userEntryArray.length;equip++){
+//         for(var j=0;j<rooms[r].loot.length;j++){
+//           if(userEntryArray[equip] === player.inventory[j].name && player.inventory[j].constructor.name === "Weapon"){
+//             $("#story").append("<li>You EQUIP the " + player.inventory[j].name + ".</li>");
+//             player.weapon = player.inventory[j];
+//             player.damage += player.weapon.damage;
+//             console.log(player);
+//             player.inventory.splice(player.inventory[j--].index, 1);
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
