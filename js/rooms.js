@@ -61,7 +61,6 @@ var room2 = new Room(
   //info
   [
     //Main description
-
     "You're in ROOM 2 now. There are 3 DOORS leading EAST, WEST, and SOUTH.",
     //North description
     "North of room",
@@ -93,7 +92,7 @@ var room3 = new Room(
   //info
   [
     //Main description
-    "You enter a narrow stone corridor. Two DOORS lead to the EAST and to the WEST. A giant SPIDER blocks the WEST DOOR.",
+    "You enter a narrow stone corridor. Two DOORS lead to the EAST and to the WEST.",
     //North description
     "North of room",
     //East description

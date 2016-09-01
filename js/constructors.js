@@ -68,9 +68,20 @@ var Door = function (name, direction, destination, locked, info) {
 
 Room.prototype.look = function() {
   if (this.active) {
-    $("#story").append("<li>" + this.info[0] + "</li>");
+    $("#story").append(this.info[0]);
+    for(var l = 0;l<this.loot.length;l++){
+      if(this.loot.length > 0){
+        $("#story").append(" There is a " + this.loot[l].name + " in the room.");
+      }
+    }
+    for(var k = 0;k<this.characters.length;k++){
+      if(this.characters.length > 0 && this.characters[k].isAlive === true){
+        $("#story").append(" " + this.characters[k].name + " is in the room.")
+      }else if(this.characters.length > 0 &&  this.characters[k].isAlive === false){
+        $("#story").append(" " + this.characters[k].name + "'s dead body is in the room.")
+      }
+    }
   }
-
 };
 
 Room.prototype.contentsDescription = function() {
@@ -188,7 +199,7 @@ NPC.prototype.dropItems = function() {
 var look = function(userEntryArray, arrayLength, rooms, player) {
   for (var r = 0; r < rooms.length; r++) {
     if (arrayLength === 1 && rooms[r].active) {
-      $("#story").append("<li>" + rooms[r].info[0] + "</li>");
+      rooms[r].look();
     }
     else if (arrayLength > 1) {
       if (rooms[r].active) {
