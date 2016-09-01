@@ -1,5 +1,5 @@
 
-var Player = function(playerName,maxHealth,damage,info){
+var Player = function(playerName,maxHealth,damage,inventory,info){
   this.name = playerName;
   this.maxHealth = maxHealth;
   this.currentHealth = this.maxHealth;
@@ -68,9 +68,20 @@ var Door = function (name, direction, destination, locked, info) {
 
 Room.prototype.look = function() {
   if (this.active) {
-    $("#story").append("<li>" + this.info[0] + "</li>");
+    $("#story").append(this.info[0]);
+    for(var l = 0;l<this.loot.length;l++){
+      if(this.loot.length > 0){
+        $("#story").append(" There is a " + this.loot[l].name + " in the room.");
+      }
+    }
+    for(var k = 0;k<this.characters.length;k++){
+      if(this.characters.length > 0 && this.characters[k].isAlive === true){
+        $("#story").append(" " + this.characters[k].name + " is in the room.")
+      }else if(this.characters.length > 0 &&  this.characters[k].isAlive === false){
+        $("#story").append(" " + this.characters[k].name + "'s dead body is in the room.")
+      }
+    }
   }
-
 };
 
 Player.prototype.printInventory = function() {
@@ -154,10 +165,10 @@ Player.prototype.dropLoot = function(userEntryArray, rooms){
 }
 
 
-var look = function(userEntryArray, arrayLength, rooms) {
+var look = function(userEntryArray, arrayLength, rooms, player) {
   for (var r = 0; r < rooms.length; r++) {
     if (arrayLength === 1 && rooms[r].active) {
-      $("#story").append("<li>" + rooms[r].info[0] + "</li>");
+      rooms[r].look();
     }
     else if (arrayLength > 1) {
       if (rooms[r].active) {
@@ -170,6 +181,16 @@ var look = function(userEntryArray, arrayLength, rooms) {
           for(var j=0;j<rooms[r].usable.length;j++){
             if(userEntryArray[look].includes(rooms[r].door[j].name)){
               $("#story").append("<li>" + rooms[r].door[j].info + "</li>");
+            }
+          }
+          for(var k=0;k<rooms[r].characters.length;k++){
+            if(userEntryArray[look].includes(rooms[r].characters[j].name)){
+              $("#story").append("<li>" + rooms[r].characters[k].info + "</li>");
+            }
+          }
+          for(var i=0;i<player.inventory.length;i++){
+            if(userEntryArray[look].includes(player.inventory[i].name)){
+              $("#story").append("<li>" + player.inventory[i].info + "</li>");
             }
           }
         }

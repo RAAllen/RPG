@@ -33,7 +33,7 @@ $(document).ready(function(){
         isValid = true
         //If it is LOOK
         if(userEntryArray[0] === commands[0]){
-          look(userEntryArray, numberOfWords, rooms);
+          look(userEntryArray, numberOfWords, rooms, player);
         }//end LOOK
         else if(userEntryArray[0] === commands[3]){
           player.getLoot(userEntryArray,rooms);

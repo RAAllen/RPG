@@ -31,7 +31,7 @@ var room1 = new Room(
   //info
   [
     //Main description
-    "It's a room. There is a SWORD and a COIN in it. A DOOR leads to the NORTH.",
+    "It's a room. A DOOR leads to the NORTH.",
     //North description
     "North of room",
     //East description
@@ -61,7 +61,7 @@ var room2 = new Room(
   //info
   [
     //Main description
-    "You're in ROOM 2 now. There are DRUGS in the middle of the floor, and a DOOR leading SOUTH.",
+    "You're in ROOM 2 now. There is a DOOR leading SOUTH.",
     //North description
     "North of room",
     //East description
