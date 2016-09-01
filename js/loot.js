@@ -12,4 +12,6 @@ var coin = new Loot(
   "It's a coin!"
 );
 
-var drugs = new Loot ('DRUGS', 'Its drugs!');
+var potion = new Loot ('POTION',
+'Its drugs!'
+);

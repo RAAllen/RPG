@@ -61,7 +61,7 @@ var room2 = new Room(
   //info
   [
     //Main description
-    "You're in ROOM 2 now. There are DRUGS in the middle of the floor, and a DOOR leading SOUTH.",
+    "You're in ROOM 2 now. There is a POTION lying in the middle of the floor, and 3 DOORS leading EAST, WEST, and SOUTH.",
     //North description
     "North of room",
     //East description
@@ -72,15 +72,45 @@ var room2 = new Room(
     "West of Room"
   ],
   //loot
-  [drugs],
+  [potion],
   //characters
   [],
   //doors
-  [southDoor2],
+  [southDoor2, eastDoor2, westDoor2],
   //usables
   [],
   // exits
-  'SOUTH'
+  ['SOUTH', 'EAST', 'WEST']
 );
 rooms.push(room2)
 northDoor1.destination = room2
+
+var room3 = new Room(
+  //active
+  false,
+  //info
+  [
+    //Main description
+    "You enter a narrow stone corridor.  A DOOR leads to the EAST.",
+    //North description
+    "North of room",
+    //East description
+    "East of room",
+    //South description
+    "South of Room",
+    //West description
+    "West of Room"
+  ],
+  //loot
+  [],
+  //characters
+  [],
+  //doors
+  [],
+  //usables
+  [],
+  // exits
+  'EAST'
+);
+rooms.push(room3)
+westDoor2.destination = room3

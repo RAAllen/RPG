@@ -188,8 +188,8 @@ var open = function(words, numberOfWords, rooms) {
       if (rooms[r].active === true) {
         for (var w=0; w < numberOfWords; w++) {
           for (var d=0; d < rooms[r].doors.length; d++) {
-            if (words[w].includes(rooms[r].exits)) {
-              $("#story").append("<li>You OPEN the " + rooms[r].exits + " DOOR and enter the next room.</li>")
+            if (words[w].includes(rooms[r].doors[d].direction)) {
+              $("#story").append("<li>You OPEN the " + rooms[r].doors[d].direction + " DOOR and enter the next room.</li>")
               rooms[r].doors[d].destination.active = true;
               rooms[r].active = false;
               $("#story").append("<li>" + rooms[r].doors[d].destination.info[0] + "</li>")
@@ -200,3 +200,54 @@ var open = function(words, numberOfWords, rooms) {
     }
   }
 };
+
+var attack = function(userEntryArray, numberOfWords, rooms, player) {
+  if(userEntryArray.length === 1){
+    $("#story").append("<li>Please select something to ATTACK.</li>");
+  }
+  //If it is ATTACK with more words
+  else if(userEntryArray.length > 1){
+    for(var r=0;r<rooms.length;r++){
+      for(var attack=1;attack<userEntryArray.length;attack++){
+        for(var k=0; k<rooms[r].characters.length; k++){
+          if((userEntryArray[attack].includes(rooms[r].characters[k].name)) && (rooms[r].characters[k].isAlive === true)){
+            $("#story").append("<li>YOU attack " + rooms[r].characters[k].name + " and they take " + player.damage + " damage.</li>");
+            rooms[r].characters[k].currentHealth -= player.damage;
+            console.log(Fred);
+            if (rooms[r].characters[k].currentHealth <= 0) {
+              rooms[r].characters[k].isAlive = false;
+              $("#story").append("<li>" + rooms[r].characters[k].name + " has died!</li>")
+            }
+            else if (rooms[r].characters[k].currentHealth > 0) {
+              $("#story").append("<li>" + rooms[r].characters[k].name + " attacks you and deals " + rooms[r].characters[k].damage + " damage!</li>")
+              player.currentHealth -= rooms[r].characters[k].damage;
+              if (player.currentHealth <= 0) {
+                player.isAlive = false;
+                $("#play-game").hide();
+                $("#lose-screen").fadeToggle(5000);
+              }
+              console.log(player.currentHealth);
+            }
+          }
+          else {
+            $("#story").append("<li>You can't attack that.</li>")
+          }
+        }
+      }
+    }
+  }
+};
+
+Player.prototype.usePotion = function(potion) {
+  for (var item = 0; item < this.inventory.length; item++) {
+    if (this.inventory.includes(potion)) {
+      this.currentHealth += 5;
+      $("#story").append("<li> You drink the potion and feel rejuvinated as your wounds heal.")
+      if (this.currentHealth > this.maxHealth) {
+        this.currentHealth = this.maxHealth;
+      }
+      this.inventory.splice($.inArray(this.inventory[item], this.inventory), 1);
+    }
+  }
+  this.printInventory();
+}
