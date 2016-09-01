@@ -9,7 +9,9 @@ var coin = new Loot(
   //name
   "COIN",
   //info
-  "It's a coin!"
+  "A old brass coin with the image of an unknown queen on its face."
 );
 
-var drugs = new Loot ('DRUGS', 'Its drugs!');
+var potion = new Loot ('POTION',
+'A glass bottle filled with a dark red liquid.'
+);

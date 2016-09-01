@@ -3,8 +3,8 @@ var commands = ["LOOK", "USE", "ATTACK", "GET", "TALK", "EQUIP", "DROP", 'OPEN']
 $(document).ready(function(){
 
   var player = new Player("",10,1,"It's you.");
-  var linenClothes = new Loot("CLOTHES","It's your clothes");
-  player.inventory.push(linenClothes);
+  var clothes = new Loot("CLOTHES","A set of a short sleeved linen tunic with linen pants, plain leather shoes, a leather belt, and a small leather belt pouch.");
+  player.inventory.push(clothes);
   player.printInventory();
 
   $("#userInfo").submit(function(event){
@@ -47,44 +47,13 @@ $(document).ready(function(){
         } //end EQUIP
           //If it is ONLY EQUIP
         else if(userEntryArray[0] === commands[2]){
-          //If it is ONLY ATTACK
-          if(userEntryArray.length === 1){
-            $("#story").append("<li>Please select something to attack.</li>");
-          }
-          //If it is ATTACK with more words
-          else if(userEntryArray.length > 1){
-            for(var r=0;r<rooms.length;r++){
-              for(var attack=1;attack<userEntryArray.length;attack++){
-                for(var k=0; k<rooms[r].characters.length; k++){
-                  if((userEntryArray[attack].includes(rooms[r].characters[k].name)) && (rooms[r].characters[k].isAlive === true)){
-                    $("#story").append("<li>YOU attack " + rooms[r].characters[k].name + " and they take " + player.damage + " damage.</li>");
-                    rooms[r].characters[k].currentHealth -= player.damage;
-                    console.log(Fred);
-                    if (rooms[r].characters[k].currentHealth <= 0) {
-                      rooms[r].characters[k].isAlive = false;
-                      $("#story").append("<li>" + rooms[r].characters[k].name + " has died!</li>")
-                    }
-                    else if (rooms[r].characters[k].currentHealth > 0) {
-                      $("#story").append("<li>" + rooms[r].characters[k].name + " attacks you and deals " + rooms[r].characters[k].damage + " damage!</li>")
-                      player.currentHealth -= rooms[r].characters[k].damage;
-                      if (player.currentHealth <= 0) {
-                        player.isAlive = false;
-                        $("#play-game").hide();
-                        $("#lose-screen").fadeToggle(5000);
-                      }
-                      console.log(player.currentHealth);
-                    }
-                  }
-                  else {
-                    $("#story").append("<li>You can't attack that.</li>")
-                  }
-                }
-              }
-            }
-          }
+            attack(userEntryArray, numberOfWords, rooms, player);
         } //end ATTACK
-        if (userEntryArray[0] === 'OPEN') {
+        else if (userEntryArray[0] === 'OPEN') {
           open(userEntryArray, numberOfWords, rooms);
+        }
+        else if (userEntry === 'USE POTION') {
+          player.usePotion(potion);
         }
         // if(userEntryArray[0] === commands[4]) {
         //   if(userEntryArray.length === 1){
