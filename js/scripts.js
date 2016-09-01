@@ -2,7 +2,7 @@
 var commands = ["LOOK", "USE", "ATTACK", "GET", "TALK", "EQUIP", "DROP", 'OPEN'];
 $(document).ready(function(){
 
-  var player = new Player("",10,1,"It's you.");
+  var player = new Player("",15,1,"It's you.");
   var clothes = new Loot("CLOTHES","A set of a short sleeved linen tunic with linen pants, plain leather shoes, a leather belt, and a small leather belt pouch.");
   player.inventory.push(clothes);
   player.printInventory();

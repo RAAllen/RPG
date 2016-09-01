@@ -17,9 +17,9 @@ var Fred = new NPC(
   //info
   "You see a ragged man huddled in the corner of the room clutching something in his hands. He doesn't respond to your presense.",
   //max health
-  6,
+  8,
   //damage
-  1,
+  3,
   //dropped items
   coin
 );
@@ -35,4 +35,30 @@ var spider = new NPC(
   3,
   //dropped items
   potion
+);
+
+var johnCena = new NPC(
+  //name
+  "JOHN",
+  //info
+  "It's a massive human being! He looks like a goody-two shoes Superman. He is equipped with a gaudy wrestling costume and a fancy championship belt.",
+  //max health
+  10,
+  //damage
+  1,
+  //dropped items
+  belt
+);
+
+var ogre = new NPC(
+  //name
+  "OGRE",
+  //info
+  "It's a huge and hideous man-like creature! It begins drooling at the sight of you...",
+  //max health
+  12,
+  //damage
+  5,
+  //dropped items
+  spear
 );

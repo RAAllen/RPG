@@ -19,3 +19,10 @@ var potion = new Loot ('POTION',
 var key = new Loot ('KEY',
 'Bring this key to the exit to leave the dungeon and win the game.'
 );
+
+var belt = new Loot(
+  //name
+  "BELT",
+  //info
+  "It's a beautiful golden championship belt. It glistens when held up to the light!"
+);
