@@ -98,6 +98,7 @@ $(document).ready(function(){
     }
     if(!isValid){
       $("#story").append("<li>You can't '" + userEntry + "'.</li>");
+      $("#userInput").val("");
     }
     $("#playerHealth").text(player.currentHealth + "/" + player.maxHealth)
   });
