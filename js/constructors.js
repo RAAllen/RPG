@@ -99,12 +99,31 @@ Player.prototype.equipWeapon = function(userEntryArray){
           }
         }
       }
-      else{
-        this.inventory.push(this.weapon);
-        this.weapon = false;
-        $("#player-weapon").text(this.weapon.name);
-        this.equipWeapon(userEntryArray);
+      else if(this.weapon){
+        for(var equip=1;equip<userEntryArray.length;equip++){
+          for(var j=0;j<this.inventory.length;j++){
+            if(userEntryArray[equip] === this.inventory[j].name && this.inventory[j].constructor.name === "Weapon"){
+              this.inventory.push(this.weapon);
+              this.weapon = false;
+              $("#player-weapon").text("none");
+              this.equipWeapon(userEntryArray);
+            }
+          }
+        }
       }
+      for(var equip=1;equip<userEntryArray.length;equip++){
+        for(var j=0;j<this.inventory.length;j++){
+          if(userEntryArray[equip] === this.inventory[j].name && this.inventory[j].constructor.name != "Weapon"){
+            $("#story").append("<li>" + this.inventory[j].name + " is not a weapon.</li>");
+          }
+        }
+      }
+      // else{
+      //   this.inventory.push(this.weapon);
+      //   this.weapon = false;
+      //   $("#player-weapon").text(this.weapon.name);
+      //   this.equipWeapon(userEntryArray);
+      // }
     }
   this.printInventory();
 }
