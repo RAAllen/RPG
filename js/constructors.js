@@ -84,14 +84,6 @@ Room.prototype.look = function() {
   }
 };
 
-Room.prototype.contentsDescription = function() {
-  for (var){
-    if (this.active) {
-    $("#story").append()
-    }
-  }
-}
-
 Player.prototype.printInventory = function() {
   $("#player-inventory").empty();
   for(var i = 0; i< this.inventory.length; i++){
@@ -328,6 +320,6 @@ unlock = function(key, player, spider) {
     }
   }
   if (spider.isAlive === false) {
-    eastDoor3.locked = false;
+    westDoor3.locked = false;
   }
 }
