@@ -41,7 +41,7 @@ var westDoor3 = new Door(
   'DOOR',
   'WEST',
   '',
-  false,
+  true,
   'An ordinary wooden door.'
 );
 
@@ -49,6 +49,14 @@ var eastDoor3 = new Door(
   'DOOR',
   'EAST',
   '',
-  true,
+  false,
   'An ordinary wooden door.'
+);
+
+var finalDoor = new Door(
+  'DOOR',
+  'NORTH',
+  '',
+  true,
+  'A large stone door. You can see daylight peaking through the crack at the bottom of the door.'
 );

@@ -9,6 +9,7 @@ $(document).ready(function(){
 
   $("#userInfo").submit(function(event){
     event.preventDefault();
+    console.log(spider.isAlive)
     var name = $("#userName").val();
     player.name = name;
     console.log(player);
@@ -50,7 +51,7 @@ $(document).ready(function(){
             attack(userEntryArray, numberOfWords, rooms, player);
         } //end ATTACK
         else if (userEntryArray[0] === 'OPEN') {
-          open(userEntryArray, numberOfWords, rooms);
+          open(userEntryArray, rooms);
         }
         else if (userEntry === 'USE POTION') {
           player.usePotion(potion);
@@ -65,6 +66,9 @@ $(document).ready(function(){
         // }
       }
     }
+
+    unlock(key, player, spider);
+
     if(!isValid){
       $("#story").append("<li>You can't '" + userEntry + "'.</li>");
       $("#userInput").val("");
