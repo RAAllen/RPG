@@ -49,6 +49,6 @@ var eastDoor3 = new Door(
   'DOOR',
   'EAST',
   '',
-  false,
+  true,
   'An ordinary wooden door.'
 );

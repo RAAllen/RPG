@@ -231,30 +231,32 @@ var attack = function(userEntryArray, numberOfWords, rooms, player) {
   //If it is ATTACK with more words
   else if(userEntryArray.length > 1){
     for(var r=0;r<rooms.length;r++){
-      for(var attack=1;attack<userEntryArray.length;attack++){
-        for(var k=0; k<rooms[r].characters.length; k++){
-          if((userEntryArray[attack].includes(rooms[r].characters[k].name)) && (rooms[r].characters[k].isAlive === true)){
-            $("#story").append("<li>YOU attack " + rooms[r].characters[k].name + " and they take " + player.damage + " damage.</li>");
-            rooms[r].characters[k].currentHealth -= player.damage;
-            console.log(rooms[r].characters[k]);
-            if (rooms[r].characters[k].currentHealth <= 0) {
-              rooms[r].characters[k].isAlive = false;
-              $("#story").append("<li>" + rooms[r].characters[k].name + " has died!</li>")
-              rooms[r].characters[k].dropItems();
-            }
-            else if (rooms[r].characters[k].currentHealth > 0) {
-              $("#story").append("<li>" + rooms[r].characters[k].name + " attacks you and deals " + rooms[r].characters[k].damage + " damage!</li>")
-              player.currentHealth -= rooms[r].characters[k].damage;
-              if (player.currentHealth <= 0) {
-                player.isAlive = false;
-                $("#play-game").hide();
-                $("#lose-screen").fadeToggle(5000);
+      if (rooms[r].active) {
+        for(var attack=1;attack<userEntryArray.length;attack++){
+          for(var k=0; k<rooms[r].characters.length; k++){
+            if((userEntryArray[attack].includes(rooms[r].characters[k].name)) && (rooms[r].characters[k].isAlive === true)){
+              $("#story").append("<li>YOU attack " + rooms[r].characters[k].name + " and they take " + player.damage + " damage.</li>");
+              rooms[r].characters[k].currentHealth -= player.damage;
+              console.log(rooms[r].characters[k]);
+              if (rooms[r].characters[k].currentHealth <= 0) {
+                rooms[r].characters[k].isAlive = false;
+                $("#story").append("<li>" + rooms[r].characters[k].name + " has died!</li>")
+                rooms[r].characters[k].dropItems();
               }
-              console.log(player.currentHealth);
+              else if (rooms[r].characters[k].currentHealth > 0) {
+                $("#story").append("<li>" + rooms[r].characters[k].name + " attacks you and deals " + rooms[r].characters[k].damage + " damage!</li>")
+                player.currentHealth -= rooms[r].characters[k].damage;
+                if (player.currentHealth <= 0) {
+                  player.isAlive = false;
+                  $("#play-game").hide();
+                  $("#lose-screen").fadeToggle(5000);
+                }
+                console.log(player.currentHealth);
+              }
             }
-          }
-          else if (rooms[r].characters[k].isAlive === false) {
-            $("#story").append("<li>You can't attack that.</li>")
+            else if (rooms[r].characters[k].isAlive === false) {
+              $("#story").append("<li>You can't attack that.</li>")
+            }
           }
         }
       }
