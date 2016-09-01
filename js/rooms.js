@@ -42,7 +42,7 @@ var room1 = new Room(
     "West of Room"
   ],
   //loot
-  [sword,coin,stick],
+  [sword,stick],
   //characters
   [Fred],
   //doors
@@ -76,7 +76,7 @@ var room2 = new Room(
   //characters
   [],
   //doors
-  [southDoor2, eastDoor2, westDoor2],
+  [southDoor2, westDoor2],
   //usables
   [],
   // exits
@@ -84,6 +84,7 @@ var room2 = new Room(
 );
 rooms.push(room2)
 northDoor1.destination = room2
+eastDoor3.destination = room2
 
 var room3 = new Room(
   //active
@@ -91,7 +92,7 @@ var room3 = new Room(
   //info
   [
     //Main description
-    "You enter a narrow stone corridor.  A DOOR leads to the EAST.",
+    "You enter a narrow stone corridor. Two DOORS lead to the EAST and to the WEST. A giant SPIDER blocks the WEST DOOR.",
     //North description
     "North of room",
     //East description
@@ -104,9 +105,9 @@ var room3 = new Room(
   //loot
   [],
   //characters
-  [],
+  [spider],
   //doors
-  [],
+  [eastDoor3],
   //usables
   [],
   // exits

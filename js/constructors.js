@@ -35,7 +35,7 @@ var Weapon = function(name,info,damage){
   this.damage = damage;
 }
 
-var NPC = function(name,info,maxHealth,damage){
+var NPC = function(name,info,maxHealth,damage, droppedItems){
   this.name = name;
   this.hostile = false;
   this.info = info;
@@ -43,7 +43,7 @@ var NPC = function(name,info,maxHealth,damage){
   this.currentHealth = this.maxHealth;
   this.damage = damage;
   this.isAlive = true;
-  this.dialogue; //ADD DIALOGUE STUFF HERE!!!!!!
+  this.droppedItems = droppedItems
 }
 
 var Dialogue = function(){
@@ -134,14 +134,14 @@ Player.prototype.getLoot = function(userEntryArray, rooms){
 
 Player.prototype.dropLoot = function(userEntryArray, rooms){
   if(userEntryArray.length === 1){
-    $("#story").append("<li>You cannot drop nothing</li>");
+    $("#story").append("<li>You cannot drop nothing.</li>");
   }
   else if(userEntryArray.length > 1){
     for(var r=0;r<rooms.length;r++){
       for(var drop = 1; drop < userEntryArray.length; drop++){
         for(var j = 0; j<this.inventory.length;j++){
           if(userEntryArray[drop].includes(this.inventory[j].name)){
-            $("#story").append("<li>You drop the " + this.inventory[j].name);
+            $("#story").append("<li>You drop the " + this.inventory[j].name + "</li>");
             rooms[r].loot.push(this.inventory[j]);
             this.inventory.splice($.inArray(this.inventory[j], this.inventory), 1);
             console.log(this);
@@ -153,6 +153,14 @@ Player.prototype.dropLoot = function(userEntryArray, rooms){
   this.printInventory();
 }
 
+NPC.prototype.dropItems = function() {
+  for(var room = 0; room < rooms.length; room++) {
+    if (rooms[room].active) {
+      rooms[room].loot.push(this.droppedItems)
+      $("#story").append("<li>" + this.name + " drops a " + this.droppedItems.name + " onto the floor!</li>")
+    }
+  }
+}
 
 var look = function(userEntryArray, arrayLength, rooms) {
   for (var r = 0; r < rooms.length; r++) {
@@ -213,10 +221,11 @@ var attack = function(userEntryArray, numberOfWords, rooms, player) {
           if((userEntryArray[attack].includes(rooms[r].characters[k].name)) && (rooms[r].characters[k].isAlive === true)){
             $("#story").append("<li>YOU attack " + rooms[r].characters[k].name + " and they take " + player.damage + " damage.</li>");
             rooms[r].characters[k].currentHealth -= player.damage;
-            console.log(Fred);
+            console.log(rooms[r].characters[k]);
             if (rooms[r].characters[k].currentHealth <= 0) {
               rooms[r].characters[k].isAlive = false;
               $("#story").append("<li>" + rooms[r].characters[k].name + " has died!</li>")
+              rooms[r].characters[k].dropItems();
             }
             else if (rooms[r].characters[k].currentHealth > 0) {
               $("#story").append("<li>" + rooms[r].characters[k].name + " attacks you and deals " + rooms[r].characters[k].damage + " damage!</li>")
@@ -229,7 +238,7 @@ var attack = function(userEntryArray, numberOfWords, rooms, player) {
               console.log(player.currentHealth);
             }
           }
-          else {
+          else if (rooms[r].characters[k].isAlive === false) {
             $("#story").append("<li>You can't attack that.</li>")
           }
         }
@@ -240,13 +249,19 @@ var attack = function(userEntryArray, numberOfWords, rooms, player) {
 
 Player.prototype.usePotion = function(potion) {
   for (var item = 0; item < this.inventory.length; item++) {
-    if (this.inventory.includes(potion)) {
-      this.currentHealth += 5;
-      $("#story").append("<li> You drink the potion and feel rejuvinated as your wounds heal.")
-      if (this.currentHealth > this.maxHealth) {
-        this.currentHealth = this.maxHealth;
+    if (this.inventory[item] === potion) {
+      if (this.currentHealth < this.maxHealth) {
+        this.currentHealth += 5;
+        $("#story").append("<li> You drink the potion and feel rejuvinated as your wounds heal.</li>")
+        if (this.currentHealth > this.maxHealth) {
+          this.currentHealth = this.maxHealth;
+        }
+        this.inventory.splice($.inArray(this.inventory[item], this.inventory), 1);
       }
-      this.inventory.splice($.inArray(this.inventory[item], this.inventory), 1);
+      else if (this.currentHealth === this.maxHealth) {
+        this.inventory.splice($.inArray(this.inventory[item], this.inventory), 1);
+        $("#story").append("<li> You drink the potion. It is tasteless and gives you a warm feeling inside, but other than that you notice no effects.</li>")
+      }
     }
   }
   this.printInventory();
