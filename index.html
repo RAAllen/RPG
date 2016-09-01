@@ -19,48 +19,51 @@
   </head>
   <body>
     <div class="container">
-      <h1>RPG GAME</h1>
-      <div>
+      <div id="header">
+        <h1>RPG GAME</h1>
+      </div>
+      <div id="content">
         <form id="userInfo">
           <label for="userName">Enter your name</label>
           <input type="text" class="form-control" id="userName">
         </form>
-      </div>
 
-      <div class="row" id="play-game">
-        <div class="col-sm-4">
-          <h2 id ="playerName">Player</h2>
-          <h3>Health: <span id="playerHealth"></span></h3>
-          <!-- <div id="character-damage">
+        <div class="row" id="play-game">
+          <div class="col-sm-4" id="player-stats">
+            <h2 id ="playerName">Player</h2>
+            <h3>Health: <span id="playerHealth"></span></h3>
+            <!-- <div id="character-damage">
+            </div>
+            <div id="character-defense">
+            </div> -->
+            <h4>Weapon: <span id="player-weapon">NONE</span></h4>
+            <h4>Inventory:</h4>
+            <ul id="player-inventory">
+            </ul>
           </div>
-          <div id="character-defense">
-          </div> -->
-          <h4>Weapon: <span id="player-weapon">NONE</span></h4>
-          <h4>Inventory:</h4>
-          <ul id="player-inventory">
-          </ul>
-        </div>
 
-        <div class="col-sm-8">
-          <ul id="story"><li>YOU wake up in a dark, cold room, roughly ten feet by ten feet across. The walls and floor are made of stone blocks, with a wooden DOOR on the NORTH wall. A SWORD sits by the NORTH DOOR. A man named FRED sits in the corner silently. A gold COIN sits in the middle of the room. A STICK is sitting in front of the NORTH DOOR.</li></ul>
-          <form id="userEntries">
-            <input type="text" class="form-control" id="userInput">
-          </form>
-          <div id="command-list">
+          <div class="col-sm-8" id="story-block">
+            <ul id="story"><li>YOU wake up in a dark, cold room, roughly ten feet by ten feet across. The walls and floor are made of stone blocks, with a wooden DOOR on the NORTH wall. A SWORD sits by the NORTH DOOR. A man named FRED sits in the corner silently. A gold COIN sits in the middle of the room. A STICK is sitting in front of the NORTH DOOR.</li></ul>
+            <form id="userEntries">
+              <input type="text" class="form-control" id="userInput">
+            </form>
           </div>
         </div>
+
+        <div class="text-center" id="lose-screen">
+          <h1>GAME OVER</H1>
+            <h2>You have died. Start a new game?</h2>
+            <button class="btn btn-danger btn-lg" id="restart">Restart</button>
+        </div>
+
+        <div id="win-screen">
+        </div>
       </div>
 
-      <div class="text-center" id="lose-screen">
-        <h1>GAME OVER</H1>
-          <h2>You have died. Start a new game?</h2>
-          <button class="btn btn-danger btn-lg" id="restart">Restart</button>
+      <div id="command-list">
+        <h4>Commands: LOOK | USE | ATTACK | GET | OPEN | EQUIP | DROP</h4>
       </div>
 
-      <div id="win-screen">
-      </div>
-
-      <h4>Commands: LOOK | USE | ATTACK | GET | OPEN | EQUIP | DROP</h4>
     </div>
   </body>
 </html>

@@ -1,5 +1,6 @@
 body{
   font-family: monospace;
+  height: 100%;
 }
 
 ul{
@@ -13,4 +14,19 @@ input{
 
 #lose-screen, #play-game  {
   display: none;
+}
+
+#command-list {
+  position:fixed;
+  bottom: 0;
+}
+
+#player-stats {
+  position:fixed;
+  left: 0;
+}
+
+#story-block {
+  left: 300px;
+  margin-bottom: 50px;
 }
