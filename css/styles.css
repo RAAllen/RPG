@@ -12,7 +12,7 @@ input{
   background-color: red;
 }
 
-#lose-screen, #play-game  {
+#lose-screen, #play-game, #win-screen  {
   display: none;
 }
 
