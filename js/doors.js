@@ -20,3 +20,35 @@ var southDoor2 = new Door(
   false,
   'An ordinary wooden door.'
 );
+
+var eastDoor2 = new Door(
+  'DOOR',
+  'EAST',
+  '',
+  false,
+  'An ordinary wooden door.'
+);
+
+var westDoor2 = new Door(
+  'DOOR',
+  'WEST',
+  '',
+  false,
+  'An ordinary wooden door.'
+);
+
+var westDoor3 = new Door(
+  'DOOR',
+  'WEST',
+  '',
+  false,
+  'An ordinary wooden door.'
+);
+
+var eastDoor3 = new Door(
+  'DOOR',
+  'EAST',
+  '',
+  true,
+  'An ordinary wooden door.'
+);

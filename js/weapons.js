@@ -11,7 +11,7 @@ var sword = new Weapon(
   //name
   "SWORD",
   //info,
-  "It's a sword.",
+  "A notched straight sword roughly 3 feet long with a cruciform hilt.",
   //damage
   3
 );
