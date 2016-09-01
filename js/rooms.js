@@ -134,7 +134,7 @@ var room4 = new Room(
     "West of Room"
   ],
   //loot
-  [],
+  [potion],
   //characters
   [],
   //doors
