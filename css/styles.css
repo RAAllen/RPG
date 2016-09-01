@@ -19,6 +19,7 @@ input{
 #command-list {
   position:fixed;
   bottom: 0;
+  background-color: white;
 }
 
 #player-stats {
