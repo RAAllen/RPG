@@ -1,5 +1,5 @@
 
-var Player = function(playerName,maxHealth,damage,info){
+var Player = function(playerName,maxHealth,damage,inventory,info){
   this.name = playerName;
   this.maxHealth = maxHealth;
   this.currentHealth = this.maxHealth;
@@ -72,6 +72,14 @@ Room.prototype.look = function() {
   }
 
 };
+
+Room.prototype.contentsDescription = function() {
+  for (var){
+    if (this.active) {
+    $("#story").append()
+    }
+  }
+}
 
 Player.prototype.printInventory = function() {
   $("#player-inventory").empty();
@@ -154,7 +162,7 @@ Player.prototype.dropLoot = function(userEntryArray, rooms){
 }
 
 
-var look = function(userEntryArray, arrayLength, rooms) {
+var look = function(userEntryArray, arrayLength, rooms, player) {
   for (var r = 0; r < rooms.length; r++) {
     if (arrayLength === 1 && rooms[r].active) {
       $("#story").append("<li>" + rooms[r].info[0] + "</li>");
@@ -170,6 +178,16 @@ var look = function(userEntryArray, arrayLength, rooms) {
           for(var j=0;j<rooms[r].usable.length;j++){
             if(userEntryArray[look].includes(rooms[r].door[j].name)){
               $("#story").append("<li>" + rooms[r].door[j].info + "</li>");
+            }
+          }
+          for(var k=0;k<rooms[r].characters.length;k++){
+            if(userEntryArray[look].includes(rooms[r].characters[j].name)){
+              $("#story").append("<li>" + rooms[r].characters[k].info + "</li>");
+            }
+          }
+          for(var i=0;i<player.inventory.length;i++){
+            if(userEntryArray[look].includes(player.inventory[i].name)){
+              $("#story").append("<li>" + player.inventory[i].info + "</li>");
             }
           }
         }
