@@ -30,9 +30,9 @@ var spider = new NPC(
   //info
   "A massive spider, six feet long, rests on its web, blocking the EAST DOOR. It does not move from its perch, but watches you silently with its many eyes, waiting for you to make the first move.",
   //max health
-  9,
+  15,
   //damage
-  3,
+  5,
   //dropped items
   potion
 );
@@ -43,9 +43,9 @@ var johnCena = new NPC(
   //info
   "It's a massive human being! He looks like a goody-two shoes Superman. He is equipped with a gaudy wrestling costume and a fancy championship belt.",
   //max health
-  10,
+  31,
   //damage
-  1,
+  6,
   //dropped items
   belt
 );

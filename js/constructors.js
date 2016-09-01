@@ -238,7 +238,7 @@ var open = function(words, rooms) {
                   $("#story").append("<li>You OPEN the " + rooms[r].doors[d].direction + " DOOR and enter the next room.</li>")
                   rooms[r].active = false;
                   rooms[r].doors[d].destination.active = true;
-                  $("#story").append("<li>" + rooms[r].doors[d].destination.info[0] + "</li>")
+                  rooms[r].doors[d].destination.look();
                   switchedRooms = true;
                 }
                 else if (rooms[r].doors[d].locked === true) {
@@ -297,7 +297,7 @@ Player.prototype.usePotion = function(potion) {
   for (var item = 0; item < this.inventory.length; item++) {
     if (this.inventory[item] === potion) {
       if (this.currentHealth < this.maxHealth) {
-        this.currentHealth += 5;
+        this.currentHealth += 15;
         $("#story").append("<li> You drink the potion and feel rejuvinated as your wounds heal.</li>")
         if (this.currentHealth > this.maxHealth) {
           this.currentHealth = this.maxHealth;
@@ -316,10 +316,20 @@ Player.prototype.usePotion = function(potion) {
 unlock = function(key, player, spider) {
   for (var item = 0; item < player.inventory.length; item++) {
     if (player.inventory[item] === key) {
-      finalDoor.locked = false;
+      eastDoor6.locked = false;
     }
   }
   if (spider.isAlive === false) {
     westDoor3.locked = false;
+  }
+  if (johnCena.isAlive === false) {
+    finalDoor.locked === false;
+  }
+}
+
+checkWin = function () {
+  if (winRoom.active) {
+    $("#play-game").hide();
+    $("#win-screen").fadeToggle(5000);
   }
 }

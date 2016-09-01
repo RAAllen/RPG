@@ -1,5 +1,5 @@
 
-var commands = ["LOOK", "USE", "ATTACK", "GET", "TALK", "EQUIP", "DROP", 'OPEN'];
+var commands = ["LOOK", "USE", "ATTACK", "GET", "TALK", "EQUIP", "DROP", 'OPEN', 'GO'];
 $(document).ready(function(){
 
   var player = new Player("",15,1,"It's you.");
@@ -50,7 +50,7 @@ $(document).ready(function(){
         else if(userEntryArray[0] === commands[2]){
             attack(userEntryArray, numberOfWords, rooms, player);
         } //end ATTACK
-        else if (userEntryArray[0] === 'OPEN') {
+        else if ((userEntryArray[0] === 'OPEN') || (userEntryArray[0] === 'GO')) {
           open(userEntryArray, rooms);
         }
         else if (userEntry === 'USE POTION') {
