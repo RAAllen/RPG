@@ -81,14 +81,17 @@ Player.prototype.printInventory = function() {
 };
 
 Player.prototype.equipWeapon = function(userEntryArray){
+  var inInventory = false;
     if(userEntryArray.length === 1){
       $("#story").append("<li>You can't EQUIP nothing.</li>");
     }
     else if(userEntryArray.length > 1){
-      if(!this.weapon){
-        for(var equip=1;equip<userEntryArray.length;equip++){
-          for(var j=0;j<this.inventory.length;j++){
-            if(userEntryArray[equip] === this.inventory[j].name && this.inventory[j].constructor.name === "Weapon"){
+      for(var equip=1;equip<userEntryArray.length;equip++){
+        for(var j=0;j<this.inventory.length;j++){
+          if(userEntryArray[equip] === this.inventory[j].name){
+            inInventory = true;
+          if(!this.weapon){
+            if(this.inventory[j].constructor.name === "Weapon"){
               $("#story").append("<li>You EQUIP the " + this.inventory[j].name + ".</li>");
               this.weapon = this.inventory[j];
               this.damage = this.weapon.damage;
@@ -97,12 +100,8 @@ Player.prototype.equipWeapon = function(userEntryArray){
               $("#player-weapon").text(this.weapon.name);
             }
           }
-        }
-      }
-      else if(this.weapon){
-        for(var equip=1;equip<userEntryArray.length;equip++){
-          for(var j=0;j<this.inventory.length;j++){
-            if(userEntryArray[equip] === this.inventory[j].name && this.inventory[j].constructor.name === "Weapon"){
+          else if(this.weapon){
+            if(this.inventory[j].constructor.name === "Weapon"){
               this.inventory.push(this.weapon);
               this.weapon = false;
               $("#player-weapon").text("none");
@@ -110,21 +109,18 @@ Player.prototype.equipWeapon = function(userEntryArray){
             }
           }
         }
-      }
-      for(var equip=1;equip<userEntryArray.length;equip++){
-        for(var j=0;j<this.inventory.length;j++){
-          if(userEntryArray[equip] === this.inventory[j].name && this.inventory[j].constructor.name != "Weapon"){
-            $("#story").append("<li>" + this.inventory[j].name + " is not a weapon.</li>");
-          }
+        else if((userEntryArray[equip] != this.inventory[j].name)){
+          inInventory = false;
         }
       }
-      // else{
-      //   this.inventory.push(this.weapon);
-      //   this.weapon = false;
-      //   $("#player-weapon").text(this.weapon.name);
-      //   this.equipWeapon(userEntryArray);
-      // }
     }
+  }
+  if(!inInventory){
+    for(var equip=1;equip<userEntryArray.length;equip++){
+      $("#story").append("<li>" + userEntryArray[equip] + " is not in your inventory.</li>");
+    }
+  }
+
   this.printInventory();
 }
 
