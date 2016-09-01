@@ -107,7 +107,7 @@ var room3 = new Room(
   //characters
   [spider],
   //doors
-  [eastDoor3],
+  [eastDoor3, westDoor3],
   //usables
   [],
   // exits
@@ -115,3 +115,33 @@ var room3 = new Room(
 );
 rooms.push(room3)
 westDoor2.destination = room3
+
+var room4 = new Room(
+  //active
+  false,
+  //info
+  [
+    //Main description
+    "You're in ROOM 4 now. Nice.",
+    //North description
+    "North of room",
+    //East description
+    "East of room",
+    //South description
+    "South of Room",
+    //West description
+    "West of Room"
+  ],
+  //loot
+  [],
+  //characters
+  [],
+  //doors
+  [],
+  //usables
+  [],
+  // exits
+  'West'
+);
+rooms.push(room4)
+westDoor3.destination = room4

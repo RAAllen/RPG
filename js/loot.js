@@ -15,3 +15,7 @@ var coin = new Loot(
 var potion = new Loot ('POTION',
 'A glass bottle filled with a dark red liquid.'
 );
+
+var key = new Loot ('KEY',
+'Bring this key to the exit to leave the dungeon and win the game.'
+);

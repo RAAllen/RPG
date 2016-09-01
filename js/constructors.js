@@ -230,21 +230,29 @@ var look = function(userEntryArray, arrayLength, rooms, player) {
   }
 };
 
-var open = function(words, numberOfWords, rooms) {
-  if (numberOfWords <= 1) {
+var open = function(words, rooms) {
+  var switchedRooms = false;
+  if (words.length <= 1) {
     $("#story").append("<li>To OPEN a DOOR, type 'OPEN' and then the direction the DOOR is facing, such as 'NORTH' or 'SOUTH'.");
   }
-  else if (numberOfWords > 1) {
+  else if (words.length > 1) {
     for (var r=0; r < rooms.length; r++) {
-      console.log(rooms[r])
-      if (rooms[r].active === true) {
-        for (var w=0; w < numberOfWords; w++) {
-          for (var d=0; d < rooms[r].doors.length; d++) {
-            if (words[w].includes(rooms[r].doors[d].direction)) {
-              $("#story").append("<li>You OPEN the " + rooms[r].doors[d].direction + " DOOR and enter the next room.</li>")
-              rooms[r].doors[d].destination.active = true;
-              rooms[r].active = false;
-              $("#story").append("<li>" + rooms[r].doors[d].destination.info[0] + "</li>")
+      for (var w=0; w < words.length; w++) {
+        for (var d=0; d < rooms[r].doors.length; d++) {
+          if (rooms[r].active) {
+            if (words[w] === (rooms[r].doors[d].direction)) {
+              if (switchedRooms === false) {
+                if (rooms[r].doors[d].locked === false) {
+                  $("#story").append("<li>You OPEN the " + rooms[r].doors[d].direction + " DOOR and enter the next room.</li>")
+                  rooms[r].active = false;
+                  rooms[r].doors[d].destination.active = true;
+                  $("#story").append("<li>" + rooms[r].doors[d].destination.info[0] + "</li>")
+                  switchedRooms = true;
+                }
+                else if (rooms[r].doors[d].locked === true) {
+                  $("#story").append("<li>The DOOR is LOCKED.</li>")
+                }
+              }
             }
           }
         }
@@ -283,9 +291,9 @@ var attack = function(userEntryArray, numberOfWords, rooms, player) {
                 console.log(player.currentHealth);
               }
             }
-            else if (rooms[r].characters[k].isAlive === false) {
-              $("#story").append("<li>You can't attack that.</li>")
-            }
+            // else if (rooms[r].characters[k].isAlive === false) {
+            //   $("#story").append("<li>You can't attack that.</li>")
+            // }
           }
         }
       }
@@ -311,4 +319,15 @@ Player.prototype.usePotion = function(potion) {
     }
   }
   this.printInventory();
+}
+
+unlock = function(key, player, spider) {
+  for (var item = 0; item < player.inventory.length; item++) {
+    if (player.inventory[item] === key) {
+      finalDoor.locked = false;
+    }
+  }
+  if (spider.isAlive === false) {
+    eastDoor3.locked = false;
+  }
 }
