@@ -73,6 +73,19 @@ $(document).ready(function(){
       $("#story").append("<li>You can't '" + userEntry + "'.</li>");
       $("#userInput").val("");
     }
+
+    // $("#story")[0].scrollIntoView(false);
+
+    // var $cont = $("#story-block");
+    // $cont[0].scrollTop = $cont[0].scrollHeight;
+
+    // $("#userInput").keyup(function(e) {
+    //   if (e.keyCode == 13) {
+    //     $cont[0].scrollTop = $cont[0].scrollHeight;
+    //   }
+    // })
+    // .focus();
+
     $("#playerHealth").text(player.currentHealth + "/" + player.maxHealth);
     $("#character-damage").text(player.damage);
   });
