@@ -31,7 +31,7 @@ var room1 = new Room(
   //info
   [
     //Main description
-    "YOU wake up in a dark, cold room, roughly ten feet by ten feet across. The walls and floor are made of stone blocks, with a wooden DOOR on the NORTH wall, and the only light source comes from a small torch on the NORTH wall.",
+    "YOU are in a dark, cold room, roughly ten feet by ten feet across. The walls and floor are made of stone blocks, with a wooden DOOR on the NORTH wall, and the only light source comes from a small torch on the NORTH wall.",
     //North description
     "North of room",
     //East description
@@ -247,7 +247,7 @@ var room8 = new Room(
   //info
   [
     //Main description
-    "The first thing you notice about this room is the stench. The second thing is the large OGRE looming before you. There is a DOOR on the West wall.",
+    "The first thing you notice about this room is the stench. There is a DOOR on the West wall.",
     //North description
     "North of room",
     //East description

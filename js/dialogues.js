@@ -1,11 +1,20 @@
-// var template = new Dialogue(
-//   //greeting
-//   "Hello!",
-//   //player
-// )
-
-var fredDialogue = function() {
-  $("story").append("<li>FRED: Hello there! Would you like any of my fine dwarven crafts?<?li>")
-  $("story").append("<li>1. Yes, show me your wares.</li>")
-  $("story").append("<li>2. No, goodbye.</li>")
-}
+var template = new Dialogue(
+  //greeting
+  "Hello!",
+  //playerResponse1
+  "Hello to you!",
+  //playerResponse2
+  "Bye!",
+  //npcResponse1
+  "How are you?",
+  //npcResponse2
+  "See you around.",
+  //playerResponse3
+  "Dandy, thanks for asking! How about yourself?",
+  //playerResponse4
+  "Crummy, leave me alone.",
+  //npcResponse3
+  "Just great. You have a nice day now.",
+  //npcResponse4
+  "Well sooooorrrryyyyy."
+);

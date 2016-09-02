@@ -46,7 +46,8 @@ var NPC = function(name,info,maxHealth,damage, droppedItems){
   this.droppedItems = droppedItems
 }
 
-var Dialogue = function(){
+var Dialogue = function(greeting,response,playerResponse){
+  this.greeting = greeting;
   this.response = response;
   this.playerResponse = playerResponse;
 }
@@ -215,6 +216,9 @@ var look = function(userEntryArray, arrayLength, rooms, player) {
             if(userEntryArray[look].includes(player.inventory[i].name)){
               $("#story").append("<li>" + player.inventory[i].info + "</li>");
             }
+          }
+          if (userEntryArray[look].includes(player.weapon.name)){
+            $("#story").append("<li>" + player.weapon.info + "</li>");
           }
         }
       }
