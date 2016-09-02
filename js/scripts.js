@@ -73,7 +73,8 @@ $(document).ready(function(){
       $("#story").append("<li>You can't '" + userEntry + "'.</li>");
       $("#userInput").val("");
     }
-    $("#playerHealth").text(player.currentHealth + "/" + player.maxHealth)
+    $("#playerHealth").text(player.currentHealth + "/" + player.maxHealth);
+    $("#character-damage").text(player.damage);
   });
 
   $("#restart").click(function() {
